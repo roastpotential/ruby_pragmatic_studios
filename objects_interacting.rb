@@ -58,13 +58,13 @@ players_list = [player1, player2, player3]
 
 # puts "There are #{players_list.size} players in Knuckleheads."
 
-players_list.each do |players|
-    puts players.name
-end
+# players_list.each do |players|
+#     puts players.name
+# end
 
-players_list.each do |players|
-    puts players.health
-end
+# players_list.each do |players|
+#     puts players.health
+# end
 
 players_list.each do |players|
     puts "*  *  *  *  *"
@@ -88,3 +88,5 @@ knuckleheads.add_players(player2)
 knuckleheads.add_players(player3)
 
 knuckleheads.play()
+
+# hello, this is me :)

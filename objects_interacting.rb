@@ -1,28 +1,3 @@
-class Game
-    attr_reader :title 
-
-    def initialize(title)
-        @title = title
-        @title = "Knuckleheads"
-    end
-
-    # def add_players(players)
-    #     @players.push(players)
-    # end
-
-    def play
-        @players.each do |player|
-            puts player
-        end
-        @players.each do |player|
-            player.blam
-            player.w00t
-            player.w00t
-            puts player
-        end
-    end
-end
-
 players_list = []
 
 class Player
@@ -38,7 +13,7 @@ class Player
         @health + @name.length
     end
 
-    def to_hello
+    def to_s
         "Hello! I'm #{@name} with a health pool of #{@health}, and an overall score of #{score}."
     end
 
@@ -53,6 +28,27 @@ class Player
     end
 end
 
+class Game
+    attr_reader :title 
+
+    def initialize(title)
+        @title = title
+        @players = []
+        @title = "Knuckleheads"
+    end
+
+    def add_players(players)
+        @players.push(players)
+    end
+
+    def play
+        puts "There are #{@players.size} players in #{title}."
+        @players.each do |player|
+            puts player
+        end
+    end
+end
+
 player1 = Player.new("larry", 60)
 player1.name = "Lawrence"
 player2 = Player.new("curly", 125)
@@ -60,7 +56,7 @@ player3 = Player.new("moe")
 
 players_list = [player1, player2, player3]
 
-puts "There are #{players_list.size} players in Knuckleheads."
+# puts "There are #{players_list.size} players in Knuckleheads."
 
 players_list.each do |players|
     puts players.name
@@ -72,20 +68,23 @@ end
 
 players_list.each do |players|
     puts "*  *  *  *  *"
-    puts players.to_hello
+    puts players
     puts "//  oof!! //"
     players.blam
-    puts players.to_hello
+    puts players
     puts "-- ooh! --"
     players.w00t
-    puts players.to_hello
+    puts "-- ooh! --"
+    players.w00t
+    puts players
+    puts "-  -  -"
     
 end
 
-# knuckleheads = Game.new("Knuckleheads")
+knuckleheads = Game.new("Knuckleheads")
 
-# knuckleheads.add_players(player1)
-# knuckleheads.add_players(player2)
-# knuckleheads.add_players(player3)
+knuckleheads.add_players(player1)
+knuckleheads.add_players(player2)
+knuckleheads.add_players(player3)
 
-# knuckleheads.play
+knuckleheads.play()

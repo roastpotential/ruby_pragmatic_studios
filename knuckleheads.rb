@@ -1,68 +1,9 @@
+require_relative 'game'
+require_relative 'player'
+
 players = []
 
-class Game
-    attr_reader :title
-
-    def initialize(title="Knuckleheads")
-        @title = title
-        @players = []
-    end
-
-    def add_player(a_player)
-        @players << a_player
-    end
-    
-    def play
-        puts "\n\tThere are #{@players.size} players in the game."
-        
-        puts "- - -"
-        
-        @players.each do |player|
-            puts player
-        end
-
-        puts "- - -"
-        
-        @players.each do |player|
-            puts player
-            puts player.blam
-            puts player.w00t
-            puts player.w00t
-            puts "- - -"
-        end
-    end
-end
-
 knuckleheads = Game.new("Knuckleheads")
-
-class Player
-    attr_accessor :name
-    attr_reader :health
-
-    def initialize(name, health=100)
-        @name = name.capitalize
-        @health = health
-    end
-
-    def to_s 
-        # say_hello changed to to_s
-        "I'm #{@name} with a health of #{@health}; my score is #{score}.\n\t"
-    end
-
-    def blam
-        @health -= 10
-        puts "#{@name} got blammed!"
-    end
-    
-    def w00t
-        @health += 15
-        puts "#{@name} got w00ted!"
-    end
-
-    def score
-        @health + @name.length
-    end
-end
 
 puts knuckleheads.title
 

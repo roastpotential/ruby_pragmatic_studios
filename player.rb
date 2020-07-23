@@ -1,4 +1,5 @@
 require_relative 'game'
+require_relative 'die'
 
 class Player
     attr_accessor :name
@@ -26,5 +27,9 @@ class Player
 
     def score
         @health + @name.length
+    end
+
+    def strong?
+        @health > 100
     end
 end

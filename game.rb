@@ -1,7 +1,9 @@
 require_relative 'player'
+require_relative 'die'
 
 class Game
     attr_reader :title
+    attr_accessor :players
 
     def initialize(title="Knuckleheads")
         @title = title.capitalize
@@ -23,12 +25,24 @@ class Game
 
         puts "- - -"
         
-        @players.each do |player|
+        @players.each do |player|  
+            die = Die.new   
+
+            number_rolled = die.roll
+            
+            case die.roll
+            when 1..2
+                player.blam
+            when 3..4
+                puts "#{player.name} was skipped"
+            else
+                player.w00t
+            end
+            
             puts player
-            puts player.blam
-            puts player.w00t
-            puts player.w00t
+            
             puts "- - -"
-        end
+
+          end
     end
 end

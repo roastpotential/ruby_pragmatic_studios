@@ -1,6 +1,7 @@
 require_relative 'game'
 require_relative 'player'
 require_relative 'game_turn_module'
+require_relative 'die'
 
 players = []
 
@@ -8,7 +9,7 @@ knuckleheads = Game.new("Knuckleheads")
 
 puts knuckleheads.title
 
-player1 = Player.new("moe")
+player1 = Player.new("moore")
 player2 = Player.new("larry", 60)
 # player2.name = "Lawrence"
 player3 = Player.new("curly", 125)
@@ -21,7 +22,9 @@ knuckleheads.add_player(player2)
 knuckleheads.add_player(player3)
 knuckleheads.add_player(player4)
 
-knuckleheads.play
+knuckleheads.play(3)
+
+knuckleheads.print_stats
 
 # players.each do |player|
 #     puts player.health

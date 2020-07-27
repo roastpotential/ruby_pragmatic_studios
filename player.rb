@@ -10,6 +10,10 @@ class Player
         @health = health
     end
 
+    def <=>(other)
+        other.score <=> score 
+    end
+
     def to_s 
         # say_hello changed to to_s
         "I'm #{@name} with a health of #{@health}; my score is #{score}.\n\t"

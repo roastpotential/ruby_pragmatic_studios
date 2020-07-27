@@ -11,19 +11,19 @@ describe Player do
     end
 
     it "has capitalized name" do
-        player1 = Player.new("moe", 100)
+        player1 = Player.new("moore", 100)
         player2 = Player.new("larry", 60)
         player3 = Player.new("curly", 125)
         player4 = Player.new("shemp", 90)
 
-        player1.name.should == "Moe"
+        player1.name.should == "Moore"
         player2.name.should == "Larry"
         player3.name.should == "Curly"
         player4.name.should == "Shemp"
     end
 
     it "has a health value of" do
-        player1 = Player.new("moe", 100)
+        player1 = Player.new("moore", 100)
         player2 = Player.new("larry", 60)
         player3 = Player.new("curly", 125)
         player4 = Player.new("shemp", 90)
@@ -35,19 +35,19 @@ describe Player do
     end
 
     it "computes a score as the sum of its health and length of name" do
-        player1 = Player.new("moe", @initial_health1)
+        player1 = Player.new("moore", @initial_health1)
         player2 = Player.new("larry", @initial_health2)
         player3 = Player.new("curly", @initial_health3)
         player4 = Player.new("shemp", @initial_health4)
 
-        player1.score.should == (@initial_health1 + 3)
+        player1.score.should == (@initial_health1 + 5)
         player2.score.should == (@initial_health2 + 5)
         player3.score.should == (@initial_health3 + 5)
         player4.score.should == (@initial_health4 + 5)
     end
 
     it "increases health by 15 when w00ted" do
-        player1 = Player.new("moe", @initial_health1)
+        player1 = Player.new("moore", @initial_health1)
         player1.w00t
 
         player2 = Player.new("larry", @initial_health2)
@@ -66,7 +66,7 @@ describe Player do
     end
 
     it "decreases health by 10 when w00ted" do
-        player1 = Player.new("moe", @initial_health1)
+        player1 = Player.new("moore", @initial_health1)
         player1.blam
 
         player2 = Player.new("larry", @initial_health2)
@@ -96,6 +96,8 @@ describe Player do
 
     context "with a health of 100 or less" do
         before do
+            @player = Player.new("moore", @initial_health1)
+            @player = Player.new("larry", @initial_health2)
             @player = Player.new("shemp", @initial_health4)
         end 
 

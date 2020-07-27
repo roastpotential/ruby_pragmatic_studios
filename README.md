@@ -1,1 +1,0 @@
-# ruby_pragmatic_studios

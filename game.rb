@@ -53,12 +53,12 @@ class Game
 
         puts "\nKnuckleheads's Statistics: "
 
-        puts "\n#{strong_players.size} strong players: "
+        puts "\n#{strong_players.size} strong player(s): "
         strong_players.each do |player|
             print_name_and_health(player)
         end
 
-        puts "\n#{wimpy_players.size} wimpy players: "
+        puts "\n#{wimpy_players.size} wimpy player(s): "
         wimpy_players.each do |player|
             print_name_and_health(player)
         end

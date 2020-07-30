@@ -29,10 +29,10 @@ describe Game do
     end
 
     it "has a string representation" do
-        @game.players[0].to_s.should == "I'm Moore with a health of 100; my score is 105.\n\t"
-        @game.players[1].to_s.should == "I'm Larry with a health of 60; my score is 65.\n\t"
-        @game.players[2].to_s.should == "I'm Curly with a health of 125; my score is 130.\n\t"
-        @game.players[3].to_s.should == "I'm Shemp with a health of 90; my score is 95.\n\t"
+        @game.players[0].to_s.should == "I'm Moore with a health of 100; my score is 100, and my treasure value is 0.\n\t"
+        @game.players[1].to_s.should == "I'm Larry with a health of 60; my score is 60, and my treasure value is 0.\n\t"
+        @game.players[2].to_s.should == "I'm Curly with a health of 125; my score is 125, and my treasure value is 0.\n\t"
+        @game.players[3].to_s.should == "I'm Shemp with a health of 90; my score is 90, and my treasure value is 0.\n\t"
     end
 
     it "w00ts the player if a high number is rolled" do
@@ -66,5 +66,15 @@ describe Game do
         @game.players[1].health.should == @initial_health2 - (10 * 3)
         @game.players[2].health.should == @initial_health3 - (10 * 3)
         @game.players[3].health.should == @initial_health4 - (10 * 3)
-      end      
+      end
+      
+      it "assigns a treasure for points during a player's turn" do
+        game = Game.new("Knuckleheads")
+        player1 = Player.new("moore", @initial_health1)
+
+        game.add_player(player1)
+        game.play(1)
+
+        player1.points.should_not be_zero
+      end
 end

@@ -1,5 +1,6 @@
 require_relative 'game'
 require_relative 'die'
+require_relative 'treasure_trove'
 
 class Player
     attr_accessor :name
@@ -8,7 +9,31 @@ class Player
     def initialize(name, health=100)
         @name = name.capitalize
         @health = health
+        @found_treasures = Hash.new(0)
+        @point_score = 0
     end
+
+    def found_treasures(treasure)
+        @found_treasures[treasure.name] += treasure.points
+
+        @point_score += treasure.points
+
+        puts "#{@name} found a #{treasure.name}! It is worth #{treasure.points}."
+        puts "#{@name}'s current treasures are: #{@found_treasures}."
+    end
+
+    def points
+        @found_treasures.values.reduce(0, :+)
+    end
+
+    def score
+        @health + @point_score
+    end
+
+    def point_score
+        @score + points
+    end
+
 
     def <=>(other)
         other.score <=> score 
@@ -16,7 +41,7 @@ class Player
 
     def to_s 
         # say_hello changed to to_s
-        "I'm #{@name} with a health of #{@health}; my score is #{score}.\n\t"
+        "I'm #{@name} with a health of #{@health}; my score is #{score}, and my treasure value is #{@point_score}.\n\t"
     end
 
     def blam
@@ -27,10 +52,6 @@ class Player
     def w00t
         @health += 15
         puts "#{@name} got w00ted!"
-    end
-
-    def score
-        @health + @name.length
     end
 
     def strong?

@@ -1,5 +1,8 @@
 require_relative 'player'
 require_relative 'game'
+require_relative 'game_turn_module'
+require_relative 'die'
+require_relative 'treasure_trove'
 
 describe Player do
 
@@ -34,16 +37,25 @@ describe Player do
         player4.health.should == 90
     end
 
-    it "computes a score as the sum of its health and length of name" do
+    it "computes a score as the sum of its health and points" do
         player1 = Player.new("moore", @initial_health1)
-        player2 = Player.new("larry", @initial_health2)
-        player3 = Player.new("curly", @initial_health3)
-        player4 = Player.new("shemp", @initial_health4)
 
-        player1.score.should == (@initial_health1 + 5)
-        player2.score.should == (@initial_health2 + 5)
-        player3.score.should == (@initial_health3 + 5)
-        player4.score.should == (@initial_health4 + 5)
+        player1.found_treasures(Treasure.new(:bow, 25))
+
+        player1.score.should == (@initial_health1 + 25)
+    end
+
+    it "computes points as the sum of all treasure points" do
+        player1 = Player.new("moore", @initial_health1)
+        player1.found_treasures(Treasure.new(:ration, 5))
+        player1.points.should == 5
+
+        player1.found_treasures(Treasure.new(:bow, 25))
+        player1.points.should == 30
+
+        player1.found_treasures(Treasure.new(:gemstone, 100))
+        player1.points.should == 130
+            
     end
 
     it "increases health by 15 when w00ted" do

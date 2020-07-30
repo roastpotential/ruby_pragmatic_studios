@@ -25,14 +25,14 @@ describe Treasure do
     end
 
     it "has a value attribute" do
-        @treasure1.value.should == 5
-        @treasure2.value.should == 25
-        @treasure3.value.should == 50
-        @treasure4.value.should == 100
-        @treasure5.value.should == 200
-        @treasure6.value.should == 200
-        @treasure7.value.should == 400
-        @treasure8.value.should == 400
+        @treasure1.points.should == 5
+        @treasure2.points.should == 25
+        @treasure3.points.should == 50
+        @treasure4.points.should == 100
+        @treasure5.points.should == 200
+        @treasure6.points.should == 200
+        @treasure7.points.should == 400
+        @treasure8.points.should == 400
     end
 end
 

@@ -2,6 +2,8 @@ require_relative 'game'
 require_relative 'player'
 require_relative 'game_turn_module'
 require_relative 'die'
+require_relative 'clumsy_player'
+require_relative 'berserker_player'
 
 players = []
 
@@ -16,7 +18,13 @@ player2 = Player.new("larry", 60)
 player3 = Player.new("curly", 125)
 player4 = Player.new("shemp", 90)
 
-players = [player1, player2, player3, player4]
+klutz = ClumsyPlayer.new("klutz", 105)
+berserker = BerserkerPlayer.new("berserker", 50)
+
+knuckleheads.add_player(klutz)
+knuckleheads.add_player(berserker)
+
+players = [player1, player2, player3, player4, klutz, berserker]
 
 # knuckleheads.add_player(player1)
 # knuckleheads.add_player(player2)

@@ -25,7 +25,7 @@ describe Game do
     it "has a capitalized title" do
         knuckleheads = Game.new("knuckleheads")
 
-        knuckleheads.title.should == "*********Knuckleheads*********"
+        knuckleheads.title.should == "Knuckleheads"
     end
 
     it "has a string representation" do

@@ -8,12 +8,42 @@ class Game
     attr_accessor :players
 
     def initialize(title="Knuckleheads")
-        @title = title.capitalize.center(30, '*')
+        @title = title.capitalize
         @players = []
     end
 
     def add_player(a_player)
         @players << a_player
+    end
+
+    def load_players(from_file)
+        File.readlines(from_file).each do |line|
+            # name, health = line.split(',')
+            # player = Player.new(name, Integer(health))
+            add_player(Player.from_csv(line))
+        end
+    end
+
+    def high_score_entry(player)
+        formatted_name = player.name.ljust(15, '-')
+        puts "\n\t#{formatted_name} #{player.score}"
+    end
+
+    def save(to_file="players.csv")
+        File.open(to_file, "w") do |file|
+            @players.sort.each do |player|
+                file.puts player.to_csv
+            end
+        end
+    end
+
+    def save_high_scores(to_file="high_scores.txt")
+        File.open(to_file, "w") do |file|
+            file.puts "#{title}'s High Scores:"
+            @players.sort.each do |player|
+                file.puts high_score_entry(player)
+            end
+        end
     end
     
     def play(rounds)
@@ -65,10 +95,21 @@ class Game
 
         # sorted_players = @players.sort { |a, b| b.score <=> a.score }
 
+        @players.sort.each do |player|
+            puts "\n#{player.name}'s Treasure Haul:"
+            formatted_name = player.name
+            player.each_found_treasure do |treasure|
+                puts "\t#{treasure.name}: #{treasure.points}"
+            end
+        end
+
         puts "\nKnuckleheads's High Scores: "
         @players.sort.each do |player|
-            formatted_name = player.name.ljust(15, '-')
-            puts "\t#{formatted_name} #{player.score}"
+            # puts high_score_entry(player)
+            # formatted_name = player.name.ljust(15, '-')
+            # puts "\t#{formatted_name} #{player.score}"
         end
+
     end
+
 end

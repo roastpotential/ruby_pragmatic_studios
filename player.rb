@@ -13,6 +13,21 @@ class Player
         @point_score = 0
     end
 
+    def self.from_csv(line)
+        name, health = line.split(',')
+        player = Player.new(name, Integer(health))
+    end
+
+    def to_csv
+        "#{@name},#{@health}"
+    end
+
+    def load_players(from_file)
+        File.readlines(from_file).each do |line|
+            add_player(Player.from_csv(line))
+        end
+    end
+
     def found_treasures(treasure)
         @found_treasures[treasure.name] += treasure.points
 
@@ -20,6 +35,12 @@ class Player
 
         puts "#{@name} found a #{treasure.name}! It is worth #{treasure.points}."
         puts "#{@name}'s current treasures are: #{@found_treasures}."
+    end
+
+    def each_found_treasure
+        @found_treasures.each do |name, points|
+            yield Treasure.new(name, points)
+        end
     end
 
     def points

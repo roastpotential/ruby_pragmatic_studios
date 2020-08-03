@@ -96,6 +96,37 @@ describe Player do
         player4.health.should == @initial_health4 - 10
     end
 
+    it "yields each found treasure and its total points" do
+        player1 = Player.new("moore", @initial_health1)
+
+        player1.found_treasures(Treasure.new(:gemstone, 100))
+        player1.found_treasures(Treasure.new(:gemstone, 100))
+        player1.found_treasures(Treasure.new(:potion, 50))
+        player1.found_treasures(Treasure.new(:ration, 5))
+        player1.found_treasures(Treasure.new(:ration, 5))
+        player1.found_treasures(Treasure.new(:ration, 5))
+        player1.found_treasures(Treasure.new(:ration, 5))
+        player1.found_treasures(Treasure.new(:ration, 5))
+
+        yielded = []
+        player1.each_found_treasure do |treasure|
+            yielded << treasure
+        end
+
+        yielded.should == [
+            Treasure.new(:gemstone, 200),
+            Treasure.new(:potion, 50),
+            Treasure.new(:ration, 25)
+        ]
+    end
+
+    it "can be created from a CSV string" do
+        player = Player.from_csv("moore,100")
+        
+        player.name.should == "Moore"
+        player.health.should == 100
+    end 
+
     context "with a health greater than 100" do
         before do
             @player = Player.new("curly", @initial_health3)

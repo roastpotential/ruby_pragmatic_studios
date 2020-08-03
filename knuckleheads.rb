@@ -6,6 +6,7 @@ require_relative 'die'
 players = []
 
 knuckleheads = Game.new("Knuckleheads")
+knuckleheads.load_players(ARGV.shift || "players.csv")
 
 puts knuckleheads.title
 
@@ -17,14 +18,26 @@ player4 = Player.new("shemp", 90)
 
 players = [player1, player2, player3, player4]
 
-knuckleheads.add_player(player1)
-knuckleheads.add_player(player2)
-knuckleheads.add_player(player3)
-knuckleheads.add_player(player4)
+# knuckleheads.add_player(player1)
+# knuckleheads.add_player(player2)
+# knuckleheads.add_player(player3)
+# knuckleheads.add_player(player4)
 
-knuckleheads.play(3)
+loop do
+    puts "\nHow many rounds would you like to play? (Or, 'quit' to exit.)"
+    answer = gets.chomp.downcase
+    case answer
+        when /^\d+$/
+            knuckleheads.play(answer.to_i)
+        when 'quit', 'exit', 'end'
+            knuckleheads.print_stats
+            break
+        else
+            "Please enter a number for the amount of rounds to play, or 'quit' to exit."
+    end
+end
 
-knuckleheads.print_stats
+knuckleheads.save_high_scores
 
 # players.each do |player|
 #     puts player.health

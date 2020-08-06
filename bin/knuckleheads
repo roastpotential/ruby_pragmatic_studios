@@ -1,25 +1,28 @@
-require_relative 'game'
-require_relative 'player'
-require_relative 'game_turn_module'
-require_relative 'die'
-require_relative 'clumsy_player'
-require_relative 'berserker_player'
+require_relative '../lib/knuckleheads/game'
+require_relative '../lib/knuckleheads/player'
+require_relative '../lib/knuckleheads/game_turn_module'
+require_relative '../lib/knuckleheads/die'
+require_relative '../lib/knuckleheads/clumsy_player'
+require_relative '../lib/knuckleheads/berserker_player'
 
 players = []
 
-knuckleheads = Game.new("Knuckleheads")
-knuckleheads.load_players(ARGV.shift || "players.csv")
+knuckleheads = KnuckleheadsGame::Game.new("Knuckleheads")
+default_player_file = File.join(File.dirname(__FILE__), 'players.csv')
+knuckleheads.load_players(ARGV.shift || default_player_file)
+
+# knuckleheads.load_players(ARGV.shift || "players.csv")
 
 puts knuckleheads.title
 
-player1 = Player.new("moore")
-player2 = Player.new("larry", 60)
+player1 = KnuckleheadsGame::Player.new("moore")
+player2 = KnuckleheadsGame::Player.new("larry", 60)
 # player2.name = "Lawrence"
-player3 = Player.new("curly", 125)
-player4 = Player.new("shemp", 90)
+player3 = KnuckleheadsGame::Player.new("curly", 125)
+player4 = KnuckleheadsGame::Player.new("shemp", 90)
 
-klutz = ClumsyPlayer.new("klutz", 105)
-berserker = BerserkerPlayer.new("berserker", 50)
+klutz = KnuckleheadsGame::ClumsyPlayer.new("klutz", 105)
+berserker = KnuckleheadsGame::BerserkerPlayer.new("berserker", 50)
 
 knuckleheads.add_player(klutz)
 knuckleheads.add_player(berserker)
